@@ -1,8 +1,14 @@
 ### Burning Twin Tiger Shark ROM
 
 **Prerequisites**
-* Raspberry Pi
+* Raspberry Pi (2 model B tested)
 * GPIO Connection wires
+
+**Disclaimer** \
+I will not be liable for any loss or damage made to anything related to this.
+When everything works as expected, this is an easy thing to do. But things like this seldom work the way you expect them to.
+If you're using another model of the Raspberry Pi, please make sure to double check the pin out for it, so the connections match their functions.
+Raspberry Pi 2,3 and 4 should have the same pin outs.
 
 **Upgrading ROM**
 1. Remove the ROM board.
@@ -44,10 +50,10 @@
   
 7. Now it's time to burn the ROMs.\
    Connect the wires for burning the CODE ROM. \
-   The run\
+   Then run\
    `./write.sh ttsac_codegfx.rom` \
    After the prompt returns, you should see the text `Verifying flash... VERIFIED.` \
-   Then you're ready to burn the AUDIO ROM. Connect the wires to those pins, then run: \
+   Then you're ready to burn the AUDIO ROM. Connect the wires to go into the Audio connector on the ROM board, then run: \
    `./write.sh ttsac_audio.rom`
    
 You're done!
