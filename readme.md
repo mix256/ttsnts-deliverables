@@ -1,4 +1,4 @@
-### Burning Twin Tiger Shark ROM
+### Programming the Twin Tiger Shark ROM Board
 
 **Prerequisites**
 * Raspberry Pi (2 model B tested)
@@ -6,14 +6,19 @@
 
 **Disclaimer** \
 I will not be liable for any loss or damage made to anything related to this.
-When everything works as expected, this is an easy thing to do. But things like this seldom work the way you expect them to.
+When everything works as expected, this is an easy thing to do. \
 If you're using another model of the Raspberry Pi, please make sure to double check the pin out for it, so the connections match their functions.
-Raspberry Pi 2,3 and 4 should have the same pin outs.
+Raspberry Pi 2,3 and 4 should have the same pin out.
 
 **Upgrading ROM**
-1. Remove the ROM board.
+1. Remove the ROM board from the main Twin Tiger Shark PCB. \
+   The ROM board contains two ROM ICs. One for the Code and one for the Audio. They both need to be programmed with the proper binary.
 
-2. Attach wires between the ROM board and the Raspberry Pi as shown in the images at the bottom of this readme.
+2. Attach wires between the ROM board and the Raspberry Pi as shown in the images at the bottom of this readme. \
+   There are two connectors on the ROM board. One goes to the Code ROM and the other to the Audio ROM. \
+   The connection images shows how it looks when the Code ROM connector has been wired. \
+   When programming the Audio ROM, just move the wires to the Audio connector. \
+   That connector has the same pin out as the Code ROM Connector.
 
 3. Start and login to your Raspberry Pi
 
@@ -47,13 +52,22 @@ Raspberry Pi 2,3 and 4 should have the same pin outs.
    Should all be lower case and not use any special characters, of any kind. \
    If you want to use a space in there, make sure to surround the whole text with citation marks. \
    Make sure it's short, otherwise you might make the ROM corrupt.
-  
-7. Now it's time to burn the ROMs.\
-   Connect the wires for burning the CODE ROM. \
+ 
+7. Optional step to make backups of the two ROMs. \
+   Connect the wires for programming the CODE ROM. \
+   Run the following command: \
+   `sudo flashrom -p linux_spi:dev=/dev/spidev0.0,spispeed=8000 -r tts_backup_code.rom` \
+   Wait for the prompt to return, then connect the wires for programming the AUDIO ROM. \
+   Run the following command: \
+   `sudo flashrom -p linux_spi:dev=/dev/spidev0.0,spispeed=8000 -r tts_backup_audio.rom` \
+   When the prompt return you should now have two files created that is your backup ROMs.
+ 
+8. Now it's time to program the ROMs.\
+   Connect the wires for programming the CODE ROM. \
    Then run\
    `./write.sh ttsac_codegfx.rom` \
-   After the prompt returns, you should see the text `Verifying flash... VERIFIED.` \
-   Then you're ready to burn the AUDIO ROM. Connect the wires to go into the Audio connector on the ROM board, then run: \
+   After the prompt returns (will take several minutes), you should see the text `Verifying flash... VERIFIED.` \
+   Then you're ready to program the AUDIO ROM. Connect the wires to go into the Audio connector on the ROM board, then run: \
    `./write.sh ttsac_audio.rom`
    
 You're done!
