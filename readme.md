@@ -37,7 +37,7 @@ Raspberry Pi 2,3 and 4 should have the same pin out.
    `sudo make install`
 
 5. Copy and unpack the ZIP file with the ROMs somewhere to your Pi (found in the binary directory here).\
-   `unzip ttsnts_2023-02-10_arcade_lovers.zip` \
+   `unzip ttsnts_2023-02-16_arcade_lovers.zip` \
    The sh files might need to be chmoded, by running something like:\
    `sudo chmod -R 777 .`\
    in the directory where you unpacked the ZIP.
