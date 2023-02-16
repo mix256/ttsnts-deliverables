@@ -52,8 +52,16 @@ Raspberry Pi 2,3 and 4 should have the same pin out.
    Should all be lower case and not use any special characters, of any kind. \
    If you want to use a space in there, make sure to surround the whole text with citation marks. \
    Make sure it's short, otherwise you might make the ROM corrupt.
+
+7. Enable SPI:
+   1. `sudo raspi-config`
+   2. Select the `Interfacing Options`
+   3. Look for the option to enable SPI. Select it and press enter.
+   4. Select `Yes` and press enter.
+   5. Press esc to back out of the menu system 
+   6. restart your Pi.
  
-7. Optional step to make backups of the two ROMs. \
+8. Optional step to make backups of the two ROMs. \
    Connect the wires for programming the CODE ROM. \
    Run the following command: \
    `sudo flashrom -p linux_spi:dev=/dev/spidev0.0,spispeed=8000 -r tts_backup_code.rom` \
@@ -62,7 +70,7 @@ Raspberry Pi 2,3 and 4 should have the same pin out.
    `sudo flashrom -p linux_spi:dev=/dev/spidev0.0,spispeed=8000 -r tts_backup_audio.rom` \
    When the prompt return you should now have two files created that is your backup ROMs.
  
-8. Now it's time to program the ROMs.\
+9. Now it's time to program the ROMs.\
    Connect the wires for programming the CODE ROM. \
    Then run\
    `./write.sh ttsac_codegfx.rom` \
